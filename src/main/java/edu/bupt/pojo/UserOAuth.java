@@ -5,17 +5,17 @@ import java.io.Serializable;
 /**
  * Created by 73681 on 2018/5/30.
  */
-public class User extends BaseModel<Integer> implements Serializable{
+public class UserOAuth extends BaseModel<Integer> implements Serializable{
 
-    private String username;
+    private String loginAccount;
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getLoginAccount() {
+        return loginAccount;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLoginAccount(String loginAccount) {
+        this.loginAccount = loginAccount;
     }
 
     public String getPassword() {

@@ -3,16 +3,18 @@
 <mapper namespace="edu.bupt.mapper.UserMapper">
 
 
-    <select id="selectByPrimaryKey" parameterType="int" resultType="edu.bupt.pojo.User">
+
+
+    <select id="selectByPrimaryKey" parameterType="int" resultType="edu.bupt.pojo.UserOAuth">
         SELECT * FROM user WHERE id = #{id}
     </select>
 
 
-    <update id="updateByPrimaryKey" parameterType="edu.bupt.pojo.User">
+    <update id="updateByPrimaryKey" parameterType="edu.bupt.pojo.UserOAuth">
         UPDATE User
         <set>
             <if test="id != null">id=#{id},</if>
-            <if test="username != null">username=#{username},</if>
+            <if test="loginAccount != null">loginAccount=#{loginAccount},</if>
             <if test="state != null">state=#{state}</if>
         </set>
         WHERE id=#{id}

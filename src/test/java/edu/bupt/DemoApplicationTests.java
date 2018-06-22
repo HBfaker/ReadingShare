@@ -1,6 +1,9 @@
 package edu.bupt;
 
+import edu.bupt.pojo.Book;
+import edu.bupt.service.BookService;
 import edu.bupt.service.UserService;
+import edu.bupt.serviceImp.BookServiceImp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +18,19 @@ public class DemoApplicationTests {
 	UserService userService;
 
 
+	@Autowired
+	BookServiceImp bookService;
+
+
+
 	@Test
 	public void contextLoads() {
+		Book book = new Book();
+		book.setUserId(2);
+		book.setISBN("24456544");
 
+		bookService.insert(book);
 
-		//userService.transactionTest();
-
-//		User User = new User();
-//		User.setId(1);
-//		User.setUsername("xxxx");
-//		User.setState(123);
-//		userService.updateByPk(User);
 	}
 
 }

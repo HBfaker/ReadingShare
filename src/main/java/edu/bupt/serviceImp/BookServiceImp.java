@@ -1,24 +1,27 @@
 package edu.bupt.serviceImp;
 
 import edu.bupt.mapper.BaseMapper;
-import edu.bupt.mapper.UserMapper;
-import edu.bupt.pojo.UserOAuth;
-import edu.bupt.service.UserService;
+import edu.bupt.mapper.BookMapper;
+import edu.bupt.pojo.Book;
+import edu.bupt.service.BookService;
 import edu.bupt.service.common.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 /**
- * Created by 73681 on 2018/5/30.
+ * Created by 73681 on 2018/6/22.
  */
 @Service
-public class UserServiceImp extends AbstractService<UserOAuth,Integer> implements UserService {
+public class BookServiceImp extends AbstractService<Book,Long> implements BookService{
 
     @Autowired
-    private UserMapper userMapper;
+    BookMapper bookMapper;
 
     @Override
     public BaseMapper getMapper() {
-        return userMapper;
+        return bookMapper;
     }
+
+
 }

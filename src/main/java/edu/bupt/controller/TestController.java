@@ -1,7 +1,5 @@
 package edu.bupt.controller;
 
-import edu.bupt.pojo.User;
-import edu.bupt.service.UserService;
 import edu.bupt.serviceImp.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
