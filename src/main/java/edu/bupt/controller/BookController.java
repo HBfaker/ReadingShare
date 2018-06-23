@@ -35,8 +35,8 @@ public class BookController {
 
     @RequestMapping(value = "book-upload",method = RequestMethod.POST)
     public Map bookUpload(@RequestParam("isbn") String ISBN, @RequestParam("userId") int userId,
-                    @RequestParam("descr") String descr){
-        String douban = "https://api.douban.com/v2/book/isbn/:" + ISBN;
+                    @RequestParam("descr") String descr) throws Exception {
+        String douban = "https://api.douban1.com/v2/book/isbn/:" + ISBN;
 
         Map<String,Object> resp = new HashMap<String,Object>();
 
@@ -78,9 +78,7 @@ public class BookController {
             resp.put("msg","ok");
 
         } catch (Exception e) {
-            resp.put("status",1000);
-            resp.put("msg",e.getMessage());
-            e.printStackTrace();
+            throw new Exception(e);
         }
         return resp;
     }
