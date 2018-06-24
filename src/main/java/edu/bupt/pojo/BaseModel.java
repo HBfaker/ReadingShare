@@ -7,21 +7,12 @@ import java.util.Date;
 /**
  * Created by 73681 on 2018/6/13.
  */
-public class BaseModel<ID extends Serializable> implements Serializable {
-    protected ID id;
+public class BaseModel implements Serializable {
 
     protected Timestamp timeCreated;
 
     protected Timestamp timeModified;
 
-
-    public ID getId() {
-        return id;
-    }
-
-    public void setId(ID id) {
-        this.id = id;
-    }
 
     public Timestamp getTimeCreated() {
         return timeCreated;
