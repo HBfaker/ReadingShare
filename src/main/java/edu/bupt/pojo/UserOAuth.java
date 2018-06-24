@@ -5,8 +5,9 @@ import java.io.Serializable;
 /**
  * Created by 73681 on 2018/5/30.
  */
-public class UserOAuth extends BaseModel<Integer> implements Serializable{
+public class UserOAuth extends BaseModel implements Serializable{
 
+    private int id;
     private String loginAccount;
     private String password;
 

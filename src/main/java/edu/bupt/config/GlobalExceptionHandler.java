@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     public ErrorInfo<String> jsonErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         logger.error(e.getMessage());
         ErrorInfo<String> r = new ErrorInfo<>();
-        r.setMessage(e.getMessage());
+        r.setMsg(e.getMessage());
         r.setCode(ErrorInfo.ERROR);
         r.setData("Some Data");
         r.setUrl(req.getRequestURL().toString());

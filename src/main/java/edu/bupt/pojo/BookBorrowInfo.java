@@ -3,8 +3,9 @@ package edu.bupt.pojo;
 /**
  * Created by 73681 on 2018/6/21.
  */
-public class BookBorrowInfo extends BaseModel<Long>{
+public class BookBorrowInfo extends BaseModel{
 
+    private long id;
     /*
     * 书籍id
     * */

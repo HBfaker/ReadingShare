@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.bupt.mapper.BookMapper">
-    <insert id="insert" parameterType="edu.bupt.pojo.Book" useGeneratedKeys="true">
+    <insert id="insert" parameterType="edu.bupt.pojo.Book" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO book
         (userId, ISBN, bookName, bookImgPath,
          borrowPrice, rentPrice, demandDecr,
@@ -11,5 +11,26 @@
                 #{status},#{right})
     </insert>
 
+    <select id="selectByPrimaryKey" parameterType="long" resultType="edu.bupt.pojo.Book">
+        SELECT * FROM book WHERE id = #{id}
+    </select>
+
+
+    <!--查询书籍的通用接口-->
+    <select id="selectByCondition" parameterType="map" resultType="edu.bupt.pojo.Book">
+        SELECT * FROM book
+        <where>
+            <if test="userId != null">
+                userId = #{userId}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="bookName != null">
+                AND bookName LIKE '%${bookName}%'
+            </if>
+        </where>
+
+    </select>
 
 </mapper>
