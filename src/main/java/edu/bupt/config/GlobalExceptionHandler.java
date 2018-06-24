@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     public ErrorInfo<String> jsonErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         logger.error(e.getMessage());
         ErrorInfo<String> r = new ErrorInfo<>();
-        r.setMessage(e.getMessage());
+        r.setMsg(e.getMessage());
         //如果是token错误，需要重新登录，返回状态码900，
         r.setCode(e.getMessage().equals("tokenError")? ErrorInfo.NeedLoginERROR : ErrorInfo.ERROR);
         r.setData("Some Data");
