@@ -33,10 +33,7 @@ public class UserController {
         try {
 //        User user = userServiceImp.selectByPrimaryKey(1);
             if (username == null || password == null) {
-//                throw new Exception("注册时缺少用户名或密码");
-                resp.put("status", 1000);
-                resp.put("msg", "注册时缺少用户名或密码");
-                return resp;
+                throw new Exception("注册时缺少用户名或密码");
             }
             User user = userMapper.selectByUsername(username);
             if (user != null) {
