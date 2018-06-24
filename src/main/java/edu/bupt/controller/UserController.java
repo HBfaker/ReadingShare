@@ -44,7 +44,7 @@ public class UserController {
             user.setPassword(password);
 
             userServiceImp.insert(user);
-            System.out.println(user);
+//            System.out.println(user);
             resp.put("status", 200);
             resp.put("msg", "ok");
 
