@@ -25,7 +25,7 @@ public class UserController {
     UserServiceImp userServiceImp;
     @Autowired
     UserMapper userMapper;
-    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
     public Map register(@RequestParam(name="username",required=false) String username,
                         @RequestParam(name="password",required=false) String password) throws Exception {
         Map<String,Object> resp = new HashMap<String,Object>();
@@ -34,6 +34,9 @@ public class UserController {
 //        User user = userServiceImp.selectByPrimaryKey(1);
             if (username == null || password == null) {
                 throw new Exception("注册时缺少用户名或密码");
+            }
+            if (password.length() <6 || password.length() >25) {
+                throw new Exception("密码长度为6-25位");
             }
             User user = userMapper.selectByUsername(username);
             if (user != null) {
