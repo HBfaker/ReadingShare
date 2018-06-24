@@ -5,6 +5,7 @@ package edu.bupt.pojo;
  */
 public class BookBorrowInfo extends BaseModel{
 
+    private long id;
     /*
     * 书籍id
     * */

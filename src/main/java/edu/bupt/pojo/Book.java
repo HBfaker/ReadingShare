@@ -5,10 +5,12 @@ package edu.bupt.pojo;
  */
 public class Book extends BaseModel {
 
+    private long id;
+
 
     /*
-    * 这本书属于哪个用户
-    * */
+        * 这本书属于哪个用户
+        * */
     private int userId;
 
     /**
@@ -72,6 +74,13 @@ public class Book extends BaseModel {
     private byte right;
 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public int getUserId() {
         return userId;

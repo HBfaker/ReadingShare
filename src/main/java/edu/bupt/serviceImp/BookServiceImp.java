@@ -8,6 +8,10 @@ import edu.bupt.service.common.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * Created by 73681 on 2018/6/22.
@@ -24,4 +28,13 @@ public class BookServiceImp extends AbstractService<Book,Long> implements BookSe
     }
 
 
+    @Override
+    public Book getUserBook(long pk) {
+        return bookMapper.selectByPrimaryKey(pk);
+    }
+
+    @Override
+    public List<Book> search(Map codition) {
+        return bookMapper.selectByCondition(codition);
+    }
 }
