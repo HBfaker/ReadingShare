@@ -5,18 +5,25 @@
 
 
 
-    <select id="selectByPrimaryKey" parameterType="int" resultType="edu.bupt.pojo.UserOAuth">
+    <select id="selectByPrimaryKey" parameterType="int" resultType="edu.bupt.pojo.User">
         SELECT * FROM user WHERE id = #{id}
     </select>
 
+    <select id="selectByUsername" parameterType="String" resultType="edu.bupt.pojo.User">
+        SELECT * FROM user WHERE username = #{username}
+    </select>
 
-    <update id="updateByPrimaryKey" parameterType="edu.bupt.pojo.UserOAuth">
+    <update id="updateByPrimaryKey" parameterType="edu.bupt.pojo.User">
         UPDATE User
         <set>
             <if test="id != null">id=#{id},</if>
-            <if test="loginAccount != null">loginAccount=#{loginAccount},</if>
-            <if test="state != null">state=#{state}</if>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password}</if>
         </set>
         WHERE id=#{id}
     </update>
+
+    <insert id="insert" parameterType="edu.bupt.pojo.User" useGeneratedKeys="true">
+        INSERT INTO user (username, password) VALUES(#{username}, #{password})
+    </insert>
 </mapper>
