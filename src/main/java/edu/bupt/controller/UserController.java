@@ -74,7 +74,7 @@ public class UserController {
         }
         System.out.println("user:" + user);
         try {
-            String token = TokenUtil.createToken(user.getUsername());
+            String token = TokenUtil.createToken(new Long(user.getId()));
             System.out.println("token:" + token);
             resp.put("status", 200);
             resp.put("msg", "ok");

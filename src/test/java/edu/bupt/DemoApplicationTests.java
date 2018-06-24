@@ -84,9 +84,9 @@ public class DemoApplicationTests {
 
 	@Test
 	public void testToken() throws Exception{
-		String token = TokenUtil.createToken("zhangsan");
-		String username = TokenUtil.getAppUsername(token);
-		System.out.println("username:" + username);
+		String token = TokenUtil.createToken(new Long(1));
+		Long userId = TokenUtil.getAppUID(token);
+		System.out.println("userId:" + userId);
 	}
 
 }

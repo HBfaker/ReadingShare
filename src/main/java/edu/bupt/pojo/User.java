@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by 73681 on 2018/5/30.
  */
-public class User extends BaseModel<Integer> implements Serializable{
+public class User extends BaseModel implements Serializable{
 
 
     private int id;
