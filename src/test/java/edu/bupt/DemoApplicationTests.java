@@ -61,6 +61,7 @@ public class DemoApplicationTests {
 			.andDo(print())         //打印出请求和相应的内容
 			.andReturn().getResponse().getContentAsString();   //将相应的数据转换为字符串
 		System.out.println("--------返回的json = " + responseString);
+
 	}
 
 	@Test
