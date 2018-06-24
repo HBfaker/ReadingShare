@@ -3,6 +3,7 @@ package edu.bupt.controller;
 import edu.bupt.mapper.UserMapper;
 import edu.bupt.pojo.User;
 import edu.bupt.serviceImp.UserServiceImp;
+import edu.bupt.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,9 @@ public class UserController {
             if (username == null || password == null) {
                 throw new Exception("注册时缺少用户名或密码");
             }
+            if (username.length() <6 || username.length() >25) {
+                throw new Exception("用户名长度为6-25位");
+            }
             if (password.length() <6 || password.length() >25) {
                 throw new Exception("密码长度为6-25位");
             }
@@ -54,6 +58,29 @@ public class UserController {
         } catch(Exception e) {
             e.printStackTrace();
             throw new Exception(e);
+        }
+        return resp;
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public Map login(@RequestParam(name="username",required=false) String username,
+                        @RequestParam(name="password",required=false) String password) throws Exception {
+        Map<String, Object> resp = new HashMap<String, Object>();
+        User user = userMapper.selectByUsername(username);
+        if(user == null) { throw new Exception("该用户名不存在"); }
+
+        if(password==null || !user.getPassword().equals(password)) {
+            throw new Exception("密码错误");
+        }
+        System.out.println("user:" + user);
+        try {
+            String token = TokenUtil.createToken(user.getUsername());
+            System.out.println("token:" + token);
+            resp.put("status", 200);
+            resp.put("msg", "ok");
+            resp.put("token", token);
+        } catch(Exception e) {
+            e.printStackTrace();
         }
         return resp;
     }

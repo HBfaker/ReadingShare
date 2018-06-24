@@ -1,9 +1,10 @@
 package edu.bupt;
 
+import edu.bupt.mapper.UserMapper;
 import edu.bupt.pojo.Book;
-import edu.bupt.service.BookService;
 import edu.bupt.service.UserService;
 import edu.bupt.serviceImp.BookServiceImp;
+import edu.bupt.util.TokenUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,9 +27,10 @@ public class DemoApplicationTests {
 	@Autowired
 	UserService userService;
 
-
 	@Autowired
 	BookServiceImp bookService;
+	@Autowired
+	UserMapper userMapper;
 
 	private MockMvc mvc;
 	@Autowired
@@ -48,15 +50,43 @@ public class DemoApplicationTests {
 
 	}
 
+	//测试注册
 	@Test
-	public void testPost() throws Exception{
+	public void testRegister() throws Exception{
 		String responseString = mvc.perform(MockMvcRequestBuilders.post("/register")    //请求的url,请求的方法是POST
 				.contentType(MediaType.APPLICATION_JSON)  //数据的格式
 				.param("username","lisi") //添加参数
 				.param("password", "123")
 		).andExpect(status().isOk())    //返回的状态是200
+			.andDo(print())         //打印出请求和相应的内容
+			.andReturn().getResponse().getContentAsString();   //将相应的数据转换为字符串
+		System.out.println("--------返回的json = " + responseString);
+	}
+
+	@Test
+	public void testLogin() throws Exception{
+		String responseString = mvc.perform(MockMvcRequestBuilders.post("/login")    //请求的url,请求的方法是POST
+				.contentType(MediaType.APPLICATION_JSON)  //数据的格式
+				.param("username","lisi") //添加参数
+				.param("password", "123456")
+		).andExpect(status().isOk())    //返回的状态是200
 				.andDo(print())         //打印出请求和相应的内容
 				.andReturn().getResponse().getContentAsString();   //将相应的数据转换为字符串
 		System.out.println("--------返回的json = " + responseString);
 	}
+
+	@Test
+	public void testUser() throws Exception{
+//		User user = userMapper.selectByUsername("lisi");
+//		User user = userMapper.selectByPrimaryKey(1);
+//		System.out.println(user);
+	}
+
+	@Test
+	public void testToken() throws Exception{
+		String token = TokenUtil.createToken("zhangsan");
+		String username = TokenUtil.getAppUsername(token);
+		System.out.println("username:" + username);
+	}
+
 }

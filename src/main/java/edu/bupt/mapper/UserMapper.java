@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
  * Created by 73681 on 2018/5/30.
  */
 @Repository
-public interface UserMapper extends BaseMapper<User,Long>{
+public interface UserMapper extends BaseMapper<User,Integer>{
     User selectByUsername(String username);
 }
