@@ -52,7 +52,7 @@ public class UserController {
 
             userServiceImp.insert(user);
 //            System.out.println(user);
-            resp.put("status", 200);
+            resp.put("code", 200);
             resp.put("msg", "ok");
 
         } catch(Exception e) {
@@ -76,8 +76,10 @@ public class UserController {
         try {
             String token = TokenUtil.createToken(new Long(user.getId()));
             System.out.println("token:" + token);
-            resp.put("status", 200);
+            resp.put("code", 200);
             resp.put("msg", "ok");
+            user.setPassword("加密");
+            resp.put("user", user);
             resp.put("token", token);
         } catch(Exception e) {
             e.printStackTrace();
