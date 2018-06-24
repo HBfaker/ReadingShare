@@ -6,6 +6,7 @@ package edu.bupt.config;
 public class ErrorInfo<T> {
     public static final Integer OK = 200;
     public static final Integer ERROR = 1000;
+    public static final Integer NeedLoginERROR = 900;
 
     private Integer code;
     private String message;

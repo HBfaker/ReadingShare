@@ -80,11 +80,12 @@ public class TokenUtil {
      * @param token
      * @return user_id
      */
-    public static Long getAppUID(String token) {
+    public static Long getAppUID(String token) throws Exception {
         Map<String, Claim> claims = verifyToken(token);
         Claim user_id_claim = claims.get("userId");
         if (null == user_id_claim || StringUtils.isEmpty(user_id_claim.asString())) {
             // token 校验失败, 抛出Token验证非法异常
+            throw new Exception("token 校验失败, 抛出Token验证非法异常");
         }
         return Long.valueOf(user_id_claim.asString());
     }

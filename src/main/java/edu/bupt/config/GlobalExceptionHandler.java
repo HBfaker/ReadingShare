@@ -21,7 +21,8 @@ public class GlobalExceptionHandler {
         logger.error(e.getMessage());
         ErrorInfo<String> r = new ErrorInfo<>();
         r.setMessage(e.getMessage());
-        r.setCode(ErrorInfo.ERROR);
+        //如果是token错误，需要重新登录，返回状态码900，
+        r.setCode(e.getMessage().equals("tokenError")? ErrorInfo.NeedLoginERROR : ErrorInfo.ERROR);
         r.setData("Some Data");
         r.setUrl(req.getRequestURL().toString());
         return r;
