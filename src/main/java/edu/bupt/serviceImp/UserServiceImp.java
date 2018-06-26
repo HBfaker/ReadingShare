@@ -8,6 +8,9 @@ import edu.bupt.service.common.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by 73681 on 2018/5/30.
  */
@@ -20,5 +23,9 @@ public class UserServiceImp extends AbstractService<User,Integer> implements Use
     @Override
     public BaseMapper getMapper() {
         return userMapper;
+    }
+
+    public List<User> selectByCondition(Map condition) {
+        return userMapper.selectByCondition(condition);
     }
 }

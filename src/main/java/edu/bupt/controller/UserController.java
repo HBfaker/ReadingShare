@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -84,6 +85,24 @@ public class UserController {
         } catch(Exception e) {
             e.printStackTrace();
         }
+        return resp;
+    }
+
+    //根据条件查询User
+    //条件可以组合起来
+    @RequestMapping(value = "/getUserByCondition",method = RequestMethod.POST)
+    public Map login(@RequestParam Map<String,Object> params) throws Exception {
+        Map<String, Object> resp = new HashMap<String, Object>();
+
+        List<User> users = userMapper.selectByCondition(params);
+        if (users.size() == 0) {
+            throw new Exception("查询到的用户数为0");
+        }
+        resp.put("code", 200);
+        resp.put("msg", "ok");
+        resp.put("count",users.size());
+        resp.put("users", users);
+
         return resp;
     }
 }

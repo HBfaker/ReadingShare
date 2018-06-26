@@ -26,4 +26,21 @@
     <insert id="insert" parameterType="edu.bupt.pojo.User" useGeneratedKeys="true">
         INSERT INTO user (username, password) VALUES(#{username}, #{password})
     </insert>
+
+    <!--查询用户的通用接口-->
+    <select id="selectByCondition" parameterType="map" resultType="edu.bupt.pojo.User">
+        SELECT * FROM User
+        <where>
+            <if test="userId != null">
+                id = #{userId}
+            </if>
+            <if test="username != null">
+                AND username = #{username}
+            </if>
+            <if test="school != school">
+                AND school LIKE '%${school}%'
+            </if>
+        </where>
+
+    </select>
 </mapper>
