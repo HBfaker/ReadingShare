@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.bupt.mapper.BookBorrowInfoMapper">
+
+    <insert id="insert" parameterType="edu.bupt.pojo.BookBorrowInfo" useGeneratedKeys="true">
+        INSERT INTO book_borrow (bookId, renterId, borrowerId) VALUES
+            (${bookId},${rentId},${borrowerId})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="edu.bupt.pojo.BookBorrowInfo">
+        UPDATE book_borrow
+        <set>
+            <if test="evaluate != null">evaluate=#{evaluate},</if>
+            <if test="comment != null"> comment=#{comment}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+</mapper>

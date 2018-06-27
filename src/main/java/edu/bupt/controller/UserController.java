@@ -1,6 +1,8 @@
 package edu.bupt.controller;
 
 import edu.bupt.mapper.UserMapper;
+import edu.bupt.pojo.ApplyBook;
+import edu.bupt.pojo.BookBorrowInfo;
 import edu.bupt.pojo.User;
 import edu.bupt.serviceImp.UserServiceImp;
 import edu.bupt.util.TokenUtil;
@@ -24,6 +26,7 @@ public class UserController {
      */
     @Autowired
     UserServiceImp userServiceImp;
+
     @Autowired
     UserMapper userMapper;
     @RequestMapping(value = "/register",method = RequestMethod.POST)
@@ -84,6 +87,26 @@ public class UserController {
         } catch(Exception e) {
             e.printStackTrace();
         }
+        return resp;
+    }
+
+    @RequestMapping(value = "applybook",method = RequestMethod.POST)
+    public Map apply(ApplyBook info){
+        Map<String,Object> resp = new HashMap();
+        userServiceImp.ApplyBook(info);
+        resp.put("status",200);
+        resp.put("msg","OK");
+        return resp;
+    }
+
+
+    @RequestMapping(value = "comment",method = RequestMethod.POST)
+    public Map comment(BookBorrowInfo info){
+        System.out.println(info.getEvaluate());
+        Map<String,Object> resp = new HashMap();
+        userServiceImp.userEvaluation(info);
+        resp.put("status",200);
+        resp.put("msg","OK");
         return resp;
     }
 }

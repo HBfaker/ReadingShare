@@ -16,6 +16,7 @@ public class GlobalExceptionHandler {
     private Logger logger = Logger.getLogger(getClass());
 
     @ExceptionHandler(value = Exception.class)
+
     @ResponseBody
     public ErrorInfo<String> jsonErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         logger.error(e.getMessage());

@@ -25,7 +25,7 @@ public class WebLogAspect {
     private Logger logger = Logger.getLogger(getClass());
     private static final ThreadLocal<Long> timeTreadLocal = new ThreadLocal<>();
 
-    @Pointcut("execution(public * edu.bupt.controller..*.*(..))")
+    @Pointcut("execution(public * edu.bupt.controller..*.*(..)) && @annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public void webLog(){}
 
 
