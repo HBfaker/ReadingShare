@@ -11,6 +11,8 @@ public class User extends BaseModel implements Serializable{
     private int id;
     private String username;
     private String password;
+    private String school;
+    private String credit;
 
     public int getId() {
         return id;
@@ -37,12 +39,30 @@ public class User extends BaseModel implements Serializable{
         this.password = password;
     }
 
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getCredit() {
+        return credit;
+    }
+
+    public void setCredit(String credit) {
+        this.credit = credit;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", id=" + id +
+                ", school='" + school + '\'' +
+                ", credit='" + credit + '\'' +
                 '}';
     }
 }
